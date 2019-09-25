@@ -4,7 +4,7 @@ import './moviepanel.css'
 // Center text is an image size as specified by their API
    // https://developers.themoviedb.org/3/getting-started/images
    
-let Moviepanel = (props) => {
+let MoviePanel = (props) => {
 
 
    function getImageURL(path) {
@@ -12,14 +12,17 @@ let Moviepanel = (props) => {
       return url
    }
    function formatReleaseDate(date) {
-      if (date == undefined) {
+      if (date === undefined) {
          return "nodate!"
       }
       return date.slice(0, 4)
    }
 
    return (
-      <div class="moviepanel_container">
+      <div 
+         class="moviepanel_container"
+         onclick={ () => props.setSelectedMovie(props.movie) }   
+      >
          <img 
             className="movie_poster"
             src={getImageURL(props.movie.poster_path)} 
@@ -34,7 +37,7 @@ let Moviepanel = (props) => {
    )
 }
 
-export default Moviepanel
+export default MoviePanel
 
 // Each movie item contains:
 

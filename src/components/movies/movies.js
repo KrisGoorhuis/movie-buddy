@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './movies.css'
 
-import Moviepanel from 'components/moviepanel/moviepanel.js'
+import MoviePanel from 'components/moviepanel/moviepanel.js'
+import MovieDetails from 'components/moviedetails/moviedetails.js'
 
 
 let Movies = (props) => {
-   console.log("Movies props:")
-   console.log(props)
+   let [selectedMovie, setSelectedMovie] = useState(null)
+
 
    return (
       <div id="movies_container">
@@ -17,14 +18,21 @@ let Movies = (props) => {
             props.movies.map( (thisMovie, index) => {
                return (
                   <div key={index}>
-                     <Moviepanel 
+                     <MoviePanel 
                         movie={thisMovie} 
                         baseImageUrl={props.baseImageUrl}
+                        setSelectedMovie={setSelectedMovie}
                      />
                   </div>
                )
             })
          }
+         <div 
+            id="moviedetails_container"
+            style={ selectedMovie === null ? {display: 'none'} : {display: 'block'}}   
+         >
+            <MovieDetails movie={selectedMovie} />
+         </div>
       </div>
    )
 }
