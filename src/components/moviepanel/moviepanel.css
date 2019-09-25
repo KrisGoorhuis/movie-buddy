@@ -1,0 +1,13 @@
+.moviepanel_container {
+   /* Dimensions determined by .movie_poster */
+}
+
+.movie_poster {
+   height: 300px;
+   position: absolute;
+   z-index: 0;
+}
+
+.movie_details {
+   z-index: 1;
+}

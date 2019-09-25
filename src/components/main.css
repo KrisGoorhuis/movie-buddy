@@ -1,0 +1,10 @@
+#main_container {
+   width: var(--width_main);
+   height: 100vh;
+   margin: auto;
+   color: white;
+   padding-top: 50px;
+}
+
+
+
