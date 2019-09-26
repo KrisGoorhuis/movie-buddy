@@ -31,11 +31,13 @@ let Movies = (props) => {
             id="moviedetails_container"
             style={ selectedMovie === null ? {display: 'none'} : {display: 'block'}}   
          >
-            <MovieDetails movie={selectedMovie} />
+            {
+               selectedMovie &&
+               <MovieDetails movie={selectedMovie} />
+            }
          </div>
       </div>
    )
 }
-
 
 export default Movies

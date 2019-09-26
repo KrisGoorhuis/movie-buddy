@@ -19,19 +19,16 @@ let MoviePanel = (props) => {
    }
 
    return (
-      <div 
-         class="moviepanel_container"
-         onclick={ () => props.setSelectedMovie(props.movie) }   
-      >
+      <div class="moviepanel_container">
          <img 
             className="movie_poster"
             src={getImageURL(props.movie.poster_path)} 
          />
          <div className="movie_details">
-            <h3>{props.movie.title}</h3>
+            {/* <h3>{props.movie.title}</h3> */}
 
-            <p>{props.movie.overview}</p>
-            <p>{formatReleaseDate(props.movie.release_date)}</p>
+            <button onClick={ () => props.setSelectedMovie(props.movie) }>Expand</button>
+            <button>Add to selection</button>
          </div>
       </div>
    )
