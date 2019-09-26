@@ -9,6 +9,14 @@ body {
   background: black;
 
   --width_main: 1000px;
+
+  --orange: rgb(247, 142, 25);
+  --tan: #DBD8C0;
+  --tan2: rgb(240, 238, 215);
+  --light_blue: #7BC5E0;
+  --medium_blue: #1E66A8;
+  --dark_blue: #02287C;
+  --black: black;
 }
 
 code {

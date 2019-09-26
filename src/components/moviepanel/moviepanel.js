@@ -27,7 +27,11 @@ let MoviePanel = (props) => {
          <div className="movie_details">
             {/* <h3>{props.movie.title}</h3> */}
 
-            <button onClick={ () => props.setSelectedMovie(props.movie) }>Expand</button>
+            <button 
+               onClick={ () => props.setSelectedMovie(props.movie) }
+            >
+               Expand
+            </button>
             <button>Add to selection</button>
          </div>
       </div>
