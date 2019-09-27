@@ -33,8 +33,12 @@ let Movies = (props) => {
          >
             {
                selectedMovie &&
-               <MovieDetails movie={selectedMovie} />
+               <MovieDetails 
+                  movie={selectedMovie} 
+                  baseImageUrl={props.baseImageUrl} 
+               />
             }
+         
          </div>
       </div>
    )

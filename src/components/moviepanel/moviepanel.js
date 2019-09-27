@@ -11,6 +11,7 @@ let MoviePanel = (props) => {
       let url = props.baseImageUrl + 'w342' + path
       return url
    }
+   
    function formatReleaseDate(date) {
       if (date === undefined) {
          return "nodate!"
@@ -24,7 +25,7 @@ let MoviePanel = (props) => {
             className="movie_poster"
             src={getImageURL(props.movie.poster_path)} 
          />
-         <div className="movie_details">
+         <div className="movie_controls">
             {/* <h3>{props.movie.title}</h3> */}
 
             <button 

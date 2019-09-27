@@ -1,11 +1,19 @@
 import React from 'react'
 
+
 let MovieDetails = (props) => {
+    function getImageURL(path) {
+        let url = props.baseImageUrl + 'w780' + path
+        return url
+    }
+    
 
     if (props) {
         return (
             <div>
-                {props != null ? props.movie.original_title : null}
+                <img id="movie_backdrop" src={getImageURL(props.movie.backdrop_path)} />
+                {props.movie.original_title}
+                
             </div>
         )
         
