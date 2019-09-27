@@ -1,19 +1,41 @@
 import React from 'react'
+import './detailspanel.css'
 
 
-let MovieDetails = (props) => {
+// This component is a child of movies.js
+let DetailsPanel = (props) => {
+
     function getImageURL(path) {
         let url = props.baseImageUrl + 'w780' + path
         return url
+    }
+
+    function formatDate(date) {
+        if (date === undefined) {
+            return "--"
+        }
+        return date.slice(0, 4);
     }
     
 
     if (props) {
         return (
-            <div>
+            <div id="details_outer">
                 <img id="movie_backdrop" src={getImageURL(props.movie.backdrop_path)} />
-                {props.movie.original_title}
-                
+               
+                <div id="details_panel_container">
+                    <div id="details_container">
+                        <h3 id="title">{props.movie.title}</h3>
+                        <h6 id="date">{formatDate(props.movie.release_date)}</h6>
+                        <p id="popularity">Popularity: {props.movie.popularity}</p>
+                        <p id="overview">{props.movie.overview}</p>
+                    </div>       
+                    <div id="details_controls">
+                        <div>Close</div>
+                        <br></br>
+                        <div>Add to list</div>
+                    </div>
+               </div>
             </div>
         )
         
@@ -21,7 +43,7 @@ let MovieDetails = (props) => {
     else return
 }
 
-export default MovieDetails
+export default DetailsPanel
 
 
 // Each movie item contains:

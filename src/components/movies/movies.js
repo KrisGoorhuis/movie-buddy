@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './movies.css'
 
 import MoviePanel from 'components/moviepanel/moviepanel.js'
-import MovieDetails from 'components/moviedetails/moviedetails.js'
+import DetailsPanel from 'components/detailspanel/detailspanel.js'
 
 
 let Movies = (props) => {
@@ -29,11 +29,11 @@ let Movies = (props) => {
          }
          <div 
             id="moviedetails_container"
-            style={ selectedMovie === null ? {display: 'none'} : {display: 'block'}}   
+            style={ selectedMovie === null ? {display: 'none'} : {display: 'flex'}}   
          >
             {
                selectedMovie &&
-               <MovieDetails 
+               <DetailsPanel 
                   movie={selectedMovie} 
                   baseImageUrl={props.baseImageUrl} 
                />
