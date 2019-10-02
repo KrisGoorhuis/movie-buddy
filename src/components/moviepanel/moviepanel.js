@@ -1,45 +1,64 @@
 import React from 'react';
 import './moviepanel.css'
 
-// Center text is an image size as specified by their API
-   // https://developers.themoviedb.org/3/getting-started/images
-   
+import { connect } from 'react-redux'
+
+
+// This component takes the movie prop from normal React parent/child method
 let MoviePanel = (props) => {
 
 
+   // Center text is an image size as specified by their API
+   // https://developers.themoviedb.org/3/getting-started/images
    function getImageURL(path) {
       let url = props.baseImageUrl + 'w342' + path
       return url
    }
-   
-   function formatReleaseDate(date) {
-      if (date === undefined) {
-         return "nodate!"
-      }
-      return date.slice(0, 4)
+
+   function setSelectedMovie(movie) {
+      props.dispatch({
+         type: 'SET_SELECTED_MOVIE', 
+         payload: props.movie
+      }) 
    }
+   
+   // function formatReleaseDate(date) {
+   //    if (date === undefined) {
+   //       return "nodate!"
+   //    }
+   //    return date.slice(0, 4)
+   // }
 
    return (
-      <div class="moviepanel_container">
+      <div className="moviepanel_container" 
+         // onClick={ (event) => {setSelectedMovie(props.movie)}}
+      >
          <img 
             className="movie_poster"
-            src={getImageURL(props.movie.poster_path)} 
+            src={getImageURL(props.movie.poster_path)}
+            alt="movie poster" 
          />
          <div className="movie_controls">
             {/* <h3>{props.movie.title}</h3> */}
 
             <button 
-               onClick={ () => props.setSelectedMovie(props.movie) }
+               onClick={ () => {setSelectedMovie(props.movie)}}
             >
                Expand
             </button>
-            <button>Add to selection</button>
+            <button onClick={() => {props.dispatch({type: 'ADD_MOVIE', payload: props.movie})}}>Add to selection</button>
          </div>
       </div>
    )
 }
 
-export default MoviePanel
+let mapStateToProps = (state) => {
+   return {
+      baseImageUrl: state.baseImageUrl
+   }
+}
+
+export default connect(mapStateToProps)(MoviePanel)
 
 // Each movie item contains:
 

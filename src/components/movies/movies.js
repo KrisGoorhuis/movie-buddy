@@ -1,47 +1,44 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './movies.css'
+import { connect } from 'react-redux'
 
 import MoviePanel from 'components/moviepanel/moviepanel.js'
 import DetailsPanel from 'components/detailspanel/detailspanel.js'
 
 
 let Movies = (props) => {
-   let [selectedMovie, setSelectedMovie] = useState(null)
-
-
    return (
       <div id="movies_container">
          {
-            props.movies === null ? 
+            props.listedMovies === undefined ? 
             <div>Loading movies...</div> 
             :
-            props.movies.map( (thisMovie, index) => {
+            props.listedMovies.map( (thisMovie, index) => {
                return (
                   <div key={index}>
-                     <MoviePanel 
-                        movie={thisMovie} 
-                        baseImageUrl={props.baseImageUrl}
-                        setSelectedMovie={setSelectedMovie}
-                     />
+                     <MoviePanel movie={thisMovie} />
                   </div>
                )
             })
          }
-         <div 
-            id="moviedetails_container"
-            style={ selectedMovie === null ? {display: 'none'} : {display: 'flex'}}   
-         >
-            {
-               selectedMovie &&
-               <DetailsPanel 
-                  movie={selectedMovie} 
-                  baseImageUrl={props.baseImageUrl} 
-               />
-            }
-         
-         </div>
+         {
+            props.selectedMovie &&
+            <div 
+               id="moviedetails_container"
+               onClick={ () => props.dispatch({type: 'SET_SELECTED_MOVIE', payload: null})}
+            >
+               <DetailsPanel />
+            </div>
+         }
       </div>
    )
 }
 
-export default Movies
+let mapStateToProps = (state) => {
+   return {
+      listedMovies: state.listedMovies,
+      selectedMovie: state.selectedMovie
+   }
+}
+
+export default connect(mapStateToProps)(Movies)

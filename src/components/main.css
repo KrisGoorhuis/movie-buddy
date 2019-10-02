@@ -1,5 +1,5 @@
 #main_container {
-   width: var(--width_main);
+   max-width: var(--width_main);
    height: 100vh;
    margin: auto;
    color: white;

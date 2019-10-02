@@ -1,8 +1,10 @@
 import React from 'react'; 
-import './navbar.css'; 
+import './topbar.css'; 
+import CollectedMovies from './collected-movies/collected-movies.js'
+import { connect } from 'react-redux'
 
 
-let Navbar = () => {
+let Topbar = () => {
    // localStorage.setItem("Test", "answer");
    // let thing = localStorage.getItem("Test");
    // console.log(thing);
@@ -17,6 +19,7 @@ let Navbar = () => {
                <input id="search_input" type="text" placeholder="Title" />
                <button id="search_button" type="submit"></button>
             </div>
+            <CollectedMovies />
             <div id="advanced_search">
                <input name="actor"></input>
                <input name="title"></input>
@@ -28,4 +31,10 @@ let Navbar = () => {
    )
 }
 
-export default Navbar;
+let mapStateToProps = () => {
+   return {
+
+   }
+}
+
+export default connect(mapStateToProps)(Topbar)

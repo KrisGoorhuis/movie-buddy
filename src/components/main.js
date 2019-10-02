@@ -1,29 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import './main.css'
 
-import Navbar from 'components/navbar/navbar.js'
+import Topbar from 'components/topbar/topbar.js'
 import Splash from 'components/splash/splash.js'
 import Movies from 'components/movies/movies.js'
 
 
-let Main = () => {
-   let [baseImageUrl, setBaseImageUrl] = useState(null)
-   let [movies, setMovies] = useState(null)
+let Main = (props) => {
 
-
+   // For the record: I know this shouldn't be in a public git repo. 
+   // You gotta know when being lazy is harmless. :D
    const apiKey = '96c93cbe1f7f5d946e3d9ec59e21b9ed'
-   const baseApiUrl = 'https://api.themoviedb.org/3'
 
-   
    async function getConfiguration() {
       await fetch(`https://api.themoviedb.org/3/configuration?api_key=${apiKey}`)
          .then( response => response.json())
          .then( data => {
-            setBaseImageUrl(data.images.base_url)
+            props.dispatch({type: 'SET_BASE_IMAGE_URL', payload: data.images.base_url})
             console.log(`TMDb configuration:`)
             console.log(data)
          })
+   }
+
+   async function getGenreList() {
+      await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`)
+      .then( response => response.json())
+      .then( data => {
+         props.dispatch({type: 'SET_GENRE_LIST', payload: data.genres})
+         console.log(data.genres)
+      })
    }
 
 
@@ -34,30 +40,31 @@ let Main = () => {
       let _movies = await fetch(address)
          .then( response => response.json())
          .then( data => data.results)
-      setMovies(_movies)
+      props.dispatch({type: 'SET_LISTED_MOVIES', payload: _movies})
    }
    
-
    useEffect(() => {
       getConfiguration()
+      getGenreList()
       getSplashMovies()
-   }, [])
+   }, []) // Passing an empty array makes these run only once - not on every state change.
 
 
    return (
       <div id="main_container">
-         <Navbar />
+         <Topbar />
          <Splash />
-         <Movies movies={movies} baseImageUrl={baseImageUrl} />
+         <Movies />
+
       </div>
    )
 }
 
-let mapStateToProps = () => {
-   return {
-      nothing: "nothing"
 
+let mapStateToProps = (state) => {
+   return {
    }
 }
+
 
 export default connect(mapStateToProps)(Main)

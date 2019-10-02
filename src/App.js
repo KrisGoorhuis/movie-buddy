@@ -1,17 +1,9 @@
 import React from 'react';
 import './App.css';
 import Main from './components/main.js'
-
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import store from 'redux/store.js'
 
-let initialState = { }
-
-let reducer = (state = initialState, action) => {
-
-}
-
-const store = createStore(reducer);
 
 function App() {
    return (

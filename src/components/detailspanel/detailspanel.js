@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './detailspanel.css'
+import { connect } from 'react-redux'
 
 
 // This component is a child of movies.js
 let DetailsPanel = (props) => {
-
+    console.log(props.selectedMovie)
     function getImageURL(path) {
         let url = props.baseImageUrl + 'w780' + path
         return url
@@ -17,23 +18,50 @@ let DetailsPanel = (props) => {
         return date.slice(0, 4);
     }
     
+    useEffect( () => {
+
+        function escapeClose(event) {
+            // 27 === escape key
+            if(event.keyCode === 27) {
+                props.dispatch({type: "SET_SELECTED_MOVIE", payload: null})
+            }
+        }
+
+        document.addEventListener("keydown", escapeClose, false);
+
+        return function cleanup() {
+            document.removeEventListener("keydown", escapeClose, false);
+        }
+    }) 
+    
 
     if (props) {
         return (
-            <div id="details_outer">
-                <img id="movie_backdrop" src={getImageURL(props.movie.backdrop_path)} />
+            <div 
+                id="details_outer" 
+
+                // Prevents click events on this div from "bubbling up" or being beholden to our sem-trans background in movies.js
+                onClick={(event) => { event.stopPropagation() }                                              
+            }>
+                
+                <img 
+                    id="movie_backdrop" 
+                    src={getImageURL(props.selectedMovie.backdrop_path)} 
+                    alt="movie backdrop"
+                />
                
                 <div id="details_panel_container">
                     <div id="details_container">
-                        <h3 id="title">{props.movie.title}</h3>
-                        <h6 id="date">{formatDate(props.movie.release_date)}</h6>
-                        <p id="popularity">Popularity: {props.movie.popularity}</p>
-                        <p id="overview">{props.movie.overview}</p>
+                        <h3 id="title">{props.selectedMovie.title}</h3>
+                        <h6 id="date">{formatDate(props.selectedMovie.release_date)}</h6>
+                        <p id="popularity">Popularity: {props.selectedMovie.popularity}</p>
+                        <p id="overview">{props.selectedMovie.overview}</p>
                     </div>       
                     <div id="details_controls">
-                        <div>Close</div>
+                        <div 
+                            onClick={() => {props.dispatch({type: 'SET_SELECTED_MOVIE', payload: null})}}>Close</div>
                         <br></br>
-                        <div>Add to list</div>
+                        <div onClick={() => {props.dispatch({type: 'ADD_MOVIE', payload: props.selectedMovie})}}>Add to list</div>
                     </div>
                </div>
             </div>
@@ -43,7 +71,14 @@ let DetailsPanel = (props) => {
     else return
 }
 
-export default DetailsPanel
+let mapStateToProps = (state) => {
+    return {
+        selectedMovie: state.selectedMovie,
+        baseImageUrl: state.baseImageUrl
+    }
+}
+
+export default connect(mapStateToProps)(DetailsPanel)
 
 
 // Each movie item contains:
