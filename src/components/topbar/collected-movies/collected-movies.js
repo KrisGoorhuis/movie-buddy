@@ -1,7 +1,7 @@
 import React from 'react'
 import './collected-movies.css'
 import { connect } from 'react-redux'
-import { getSuggestibleMovies } from 'api/api_main.js'
+import getSuggestableMovies from 'api/api_main.js'
 
 
 let CollectedMovies = (props) => {
@@ -11,9 +11,15 @@ let CollectedMovies = (props) => {
    }
 
    async function getSuggestions() {
-      console.log("Getting suggestions")
-
-      let suggestions = await getSuggestibleMovies(props.collectedMovies);
+      let suggestions = await getSuggestableMovies(props.collectedMovies)
+      console.log("here's what we got back :D")
+      console.log(suggestions)
+      suggestions.forEach( (movie) => {
+         console.log(movie.title)
+      })
+      if (suggestions === null) {
+         alert("Selected movies are too few or too dissimilar to find suggestions!")
+      }
    }
 
    return (

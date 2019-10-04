@@ -18,7 +18,6 @@ const reducer = (state = initialState, action) => {
          let alreadyListed = false
 
          state.collectedMovies.forEach( (movie) => {
-            console.log(movie.id)
             if (movie.id === action.payload.id) {
                alert("Movie already listed")
                alreadyListed = true
