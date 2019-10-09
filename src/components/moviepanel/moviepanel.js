@@ -1,7 +1,9 @@
 import React from 'react';
 import './moviepanel.css'
-
 import { connect } from 'react-redux'
+
+import noImage from 'assets/missing.jpg'
+
 
 
 // This component takes the movie prop from normal React parent/child method
@@ -11,6 +13,9 @@ let MoviePanel = (props) => {
    // Center text is an image size as specified by their API
    // https://developers.themoviedb.org/3/getting-started/images
    function getImageURL(path) {
+      if (path === null) {
+         return noImage
+      }
       let url = props.baseImageUrl + 'w342' + path
       return url
    }
@@ -30,9 +35,7 @@ let MoviePanel = (props) => {
    // }
 
    return (
-      <div className="moviepanel_container" 
-         // onClick={ (event) => {setSelectedMovie(props.movie)}}
-      >
+      <div className="moviepanel_container">
          <img 
             className="movie_poster"
             src={getImageURL(props.movie.poster_path)}

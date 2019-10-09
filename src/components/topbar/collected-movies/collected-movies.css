@@ -1,25 +1,33 @@
-#selected_movies_container {
+#collected_movies_container {
    max-height: 200px;
-   width: 300px;
-   overflow: scroll;
+   min-width: 300px;
    border: 1px solid yellow;
    background: white;
    color: black;
    z-index: 2;
-   margin-top: 100px;
-   
+   margin-top: 10px;
+   display: flex;
 }
 
 #collected_movies_list {
    display: flex;
-   flex-direction: row;
+   flex-direction: column;
    justify-content: space-between;
+   overflow: scroll;
+   width: 300px;
+   padding: 5px;
 }
 
-#collected_movies_list div {
-   /* display: inline-block; */
+.listing_title {
+}
+
+.collected_movie_listing {
    display: flex;
-   align-items: center;
-   margin-top: 10px;
-   margin-bottom: 10px;
+   justify-content: space-between;
+   margin-top: 5px;
+   margin-bottom: 5px;
+}
+
+#collected_movies_controls {
+   padding: 5px;
 }

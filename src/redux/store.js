@@ -7,6 +7,7 @@ const initialState = {
    listedMovies: [],
    baseImageUrl: '',
    genreList: [],
+   searchQuery: '',
 }
 
 const reducer = (state = initialState, action) => {
@@ -68,6 +69,12 @@ const reducer = (state = initialState, action) => {
          return {
             ...state,
             genreList: action.payload
+         }
+
+      case('SET_SEARCH_QUERY'):
+         return {
+            ...state,
+            searchQuery: action.payload
          }
 
       default:

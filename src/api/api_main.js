@@ -1,32 +1,37 @@
 const apiKey = '96c93cbe1f7f5d946e3d9ec59e21b9ed'
 
-async function getSuggestableMovies(userChoices) {
-   let suggestions = []
+// Called by getSuggestions in collected-movies.js
+async function getSuggestableMovies(userChoices, searchBy) {
+   console.log(userChoices)
+   let mostPopularGenresIDs = findMostPopularGenres(userChoices)
+   
+   // Couldn't find a common genre? collected-movies.js will receive this and let them know
+   if (mostPopularGenresIDs === null) {
+      return null
+   }
 
-   let mostPopularGenresIDs =  findMostPopularGenres(userChoices)
-   await getMoviesInGenres(mostPopularGenresIDs)
-      .then( async (moviesInGenres) => {
-         suggestions = moviesInGenres;
-
-         // Remove suggestions that exist in the user's selection box.
-         // We're iterating backward through suggestions so .splice doesn't mess with indexes
-         for (var i = suggestions.length-1; i >= 0; i--) {
-            for (var j = 0; j < userChoices.length; j++) {
-               if (suggestions[i].id === userChoices[j].id) {
-                  console.log(`Removing ${suggestions[i].title} (${i}) from suggestions list`)
-                  suggestions.splice(i, 1);
-               }
-            }
-         }
-      })
-
-   console.log("Returning suggestions: ")
+   let moviesInGenres = await getMoviesInGenres(mostPopularGenresIDs, searchBy)
+   console.log(moviesInGenres)
+   let suggestions = filterOutUserChoices(moviesInGenres, userChoices)
    console.log(suggestions)
-   suggestions.forEach((movie) => {
-      console.log(movie.title)
-   })
+
+
+   suggestions = chooseTopSuggestions(suggestions)
+ 
+   // Involves fetches
+   // await getMoviesInGenres(mostPopularGenresIDs)
+   //    .then( (moviesInGenres) => {
+   //       let _suggestions = moviesInGenres
+   //       _suggestions = filterOutUserChoices(_suggestions, userChoices)
+   //       _suggestions = chooseTopSuggestions(_suggestions)
+   //       console.log("Suggestins")
+   //       console.log(_suggestions)
+   //       suggestions = _suggestions
+   //    })
+
    return suggestions
 }
+
 
 
 function findMostPopularGenres(movies) {
@@ -36,7 +41,7 @@ function findMostPopularGenres(movies) {
    let mostPopularGenres = []
 
    // Add all the genre ids to an array, including duplicates
-   movies.forEach(movie => { 
+   movies.forEach( movie => { 
       movie.genre_ids.forEach( (id) => { allGenreIds.push(id) })
    })
 
@@ -57,8 +62,6 @@ function findMostPopularGenres(movies) {
          popularGenreObjects.push({"id": thisGenreId, "count": 1})
       }
    })
-   console.log("popular genres objects")
-   console.log(popularGenreObjects)
 
    // Place most popular genres in an array. Can be one, can be several if there is a tie.
    popularGenreObjects.forEach( (obj) => {
@@ -80,11 +83,12 @@ function findMostPopularGenres(movies) {
 }
 
 // Returns a single array of all movies in all genres
-async function getMoviesInGenres(genreIds) {
+async function getMoviesInGenres(genreIds, searchBy) {
    let movies = []
 
+
    function buildAddress(id) {
-      return `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&with_genres=${id}`
+      return `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${searchBy}.desc&include_adult=false&include_video=true&page=1&with_genres=${id}`
    }
 
    await Promise.all(genreIds.map( async (id) => {
@@ -99,6 +103,38 @@ async function getMoviesInGenres(genreIds) {
    console.log("moviesInGenres2")
    console.log(movies)
    return movies
+}
+
+function filterOutUserChoices(movies, userChoices) {
+   let filteredMovies = movies;
+
+   // Remove suggestions that exist in the user's selection box.
+   // We're iterating backward through suggestions so .splice doesn't mess with indexes
+   for (var i = movies.length-1; i >= 0; i--) {
+      for (var j = 0; j < userChoices.length; j++) {
+         if (movies[i].id === userChoices[j].id) {
+            console.log(`Removing ${movies[i].title} (${i}) from movies list`)
+            movies.splice(i, 1);
+         }
+      }
+   }
+
+   return filteredMovies
+}
+
+function chooseTopSuggestions(movies, quantity = 5, sortBy = "vote_average") {
+   let _suggestions = movies;
+
+   movies.filter( (movie) => {
+      return movie.vote_count > 100
+   })
+
+   // Takes any movie property passed in as a string. Eg "vote_count"
+   movies.sort( (a, b) => {
+      return b[sortBy] - a[sortBy]
+   })
+
+   return _suggestions.splice(0, quantity);
 }
 
 

@@ -13,13 +13,12 @@ let Main = (props) => {
    // You gotta know when being lazy is harmless. :D
    const apiKey = '96c93cbe1f7f5d946e3d9ec59e21b9ed'
 
+   // Image urls in movie objects are only the tail end. Gotta get the base.
    async function getConfiguration() {
       await fetch(`https://api.themoviedb.org/3/configuration?api_key=${apiKey}`)
          .then( response => response.json())
          .then( data => {
             props.dispatch({type: 'SET_BASE_IMAGE_URL', payload: data.images.base_url})
-            console.log(`TMDb configuration:`)
-            console.log(data)
          })
    }
 
@@ -28,7 +27,6 @@ let Main = (props) => {
       .then( response => response.json())
       .then( data => {
          props.dispatch({type: 'SET_GENRE_LIST', payload: data.genres})
-         console.log(data.genres)
       })
    }
 
@@ -55,7 +53,6 @@ let Main = (props) => {
          <Topbar />
          <Splash />
          <Movies />
-
       </div>
    )
 }
