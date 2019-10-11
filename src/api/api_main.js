@@ -1,8 +1,7 @@
 const apiKey = '96c93cbe1f7f5d946e3d9ec59e21b9ed'
 
 // Called by getSuggestions in collected-movies.js
-async function getSuggestableMovies(userChoices, searchBy) {
-   console.log(userChoices)
+async function getSuggestableMovies(userChoices, searchBy, quantity) {
    let mostPopularGenresIDs = findMostPopularGenres(userChoices)
    
    // Couldn't find a common genre? collected-movies.js will receive this and let them know
@@ -11,25 +10,11 @@ async function getSuggestableMovies(userChoices, searchBy) {
    }
 
    let moviesInGenres = await getMoviesInGenres(mostPopularGenresIDs, searchBy)
-   console.log(moviesInGenres)
    let suggestions = filterOutUserChoices(moviesInGenres, userChoices)
-   console.log(suggestions)
 
+   suggestions = chooseTopSuggestions(suggestions, quantity)
 
-   suggestions = chooseTopSuggestions(suggestions)
- 
-   // Involves fetches
-   // await getMoviesInGenres(mostPopularGenresIDs)
-   //    .then( (moviesInGenres) => {
-   //       let _suggestions = moviesInGenres
-   //       _suggestions = filterOutUserChoices(_suggestions, userChoices)
-   //       _suggestions = chooseTopSuggestions(_suggestions)
-   //       console.log("Suggestins")
-   //       console.log(_suggestions)
-   //       suggestions = _suggestions
-   //    })
-
-   return suggestions
+   return {suggestions: suggestions, genres: mostPopularGenresIDs}
 }
 
 
@@ -100,8 +85,7 @@ async function getMoviesInGenres(genreIds, searchBy) {
             return movies
          })
    }))
-   console.log("moviesInGenres2")
-   console.log(movies)
+
    return movies
 }
 
@@ -113,7 +97,6 @@ function filterOutUserChoices(movies, userChoices) {
    for (var i = movies.length-1; i >= 0; i--) {
       for (var j = 0; j < userChoices.length; j++) {
          if (movies[i].id === userChoices[j].id) {
-            console.log(`Removing ${movies[i].title} (${i}) from movies list`)
             movies.splice(i, 1);
          }
       }

@@ -27,6 +27,7 @@ let Main = (props) => {
       .then( response => response.json())
       .then( data => {
          props.dispatch({type: 'SET_GENRE_LIST', payload: data.genres})
+         console.log(data.genres)
       })
    }
 
@@ -45,7 +46,7 @@ let Main = (props) => {
       getConfiguration()
       getGenreList()
       getSplashMovies()
-   }, []) // Passing an empty array makes these run only once - not on every state change.
+   }, [])
 
 
    return (

@@ -1,22 +1,35 @@
-#navbar_container {
+#topbar_container {
    position: fixed;
    left: 0;
    top: 0;
    width: 100%;
-   min-height: 50px;
+   height: 150px;
    z-index: 5;
    display: flex;
-   background-color: red;
+   justify-content: space-between;
+   background-color: var(--redpink);
 }
 
-#navbar_content {
-   width: var(--width_main);
+#find_some_movies {
+   font-size: 20px;
+   margin-bottom: 10px;
+}
+
+#title {
+   color: var(--orange);
+   font-family: 'Raleway', sans-serif; 
+   width: 180px;
+}
+
+#topbar_center {
+   width: 700px;
    height: 100%;
-   margin: auto;
+   /* margin: auto; */
    display: flex;
    justify-content: space-around;
    align-items: center;
    flex-direction: column;
+   padding-top: 30px;
 }
 
 #search_bar {
@@ -24,12 +37,35 @@
 }
 
 #search_button {
-   height: 20px;
    margin: 0px;
+}
+
+#top_controls {
+   display: flex;
+   width: 400px;
+   justify-content: space-between;
+   margin-bottom: 5px;
+}
+
+#remove_all {
+   display: flex;
+   justify-content: flex-end;
+   border-bottom: 1px solid var(--orange)
+}
+
+#remove_all:hover {
+   cursor: pointer;
 }
 
 #advanced_search {
    display: none;
+}
+
+#logo_container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 200px;
 }
 
 #tmdb_logo {

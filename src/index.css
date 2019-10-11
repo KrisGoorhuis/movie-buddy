@@ -6,20 +6,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background: black;
+  background: var(--darkpurple);
 
   --width_main: 1000px;
 
-  --orange: rgb(247, 142, 25);
-  --tan: #DBD8C0;
-  --tan2: rgb(240, 238, 215);
-  --light_blue: #7BC5E0;
-  --medium_blue: #1E66A8;
-  --dark_blue: #02287C;
-  --black: black;
+  --white: #f7f9f8;
+  --orange: #d6902d;
+  --graybrown: #9e9281;
+  --redpink: #b93e55;
+  --darkpurple: #292339;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+  

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 // This component is a child of movies.js
 let DetailsPanel = (props) => {
-    console.log(props.selectedMovie)
+    
     function getImageURL(path) {
         let url = props.baseImageUrl + 'w780' + path
         return url
@@ -16,6 +16,14 @@ let DetailsPanel = (props) => {
             return "--"
         }
         return date.slice(0, 4);
+    }
+
+    function addMovie() {
+        props.dispatch({type: 'ADD_MOVIE', payload: props.selectedMovie})
+    }
+
+    function deselectMovie() {
+        props.dispatch({type: 'SET_SELECTED_MOVIE', payload: null})
     }
     
     useEffect( () => {
@@ -54,14 +62,15 @@ let DetailsPanel = (props) => {
                     <div id="details_container">
                         <h3 id="title">{props.selectedMovie.title}</h3>
                         <h6 id="date">{formatDate(props.selectedMovie.release_date)}</h6>
+                        <h6 id="user_rating">User rating: {props.selectedMovie.vote_average}</h6>
                         <p id="popularity">Popularity: {props.selectedMovie.popularity}</p>
                         <p id="overview">{props.selectedMovie.overview}</p>
                     </div>       
                     <div id="details_controls">
                         <div 
-                            onClick={() => {props.dispatch({type: 'SET_SELECTED_MOVIE', payload: null})}}>Close</div>
+                            onClick={() => deselectMovie() }>Close</div>
                         <br></br>
-                        <div onClick={() => {props.dispatch({type: 'ADD_MOVIE', payload: props.selectedMovie})}}>Add to list</div>
+                        <div onClick={() => addMovie() }>Add to list</div>
                     </div>
                </div>
             </div>

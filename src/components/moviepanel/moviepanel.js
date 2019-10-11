@@ -26,6 +26,10 @@ let MoviePanel = (props) => {
          payload: props.movie
       }) 
    }
+
+   function addMovie() {
+      props.dispatch({type: 'ADD_MOVIE', payload: props.movie})
+   }
    
    // function formatReleaseDate(date) {
    //    if (date === undefined) {
@@ -49,7 +53,7 @@ let MoviePanel = (props) => {
             >
                Expand
             </button>
-            <button onClick={() => {props.dispatch({type: 'ADD_MOVIE', payload: props.movie})}}>Add to selection</button>
+            <button onClick={() => addMovie() }>Add to selection</button>
          </div>
       </div>
    )

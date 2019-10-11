@@ -9,9 +9,6 @@ const apiKey = '96c93cbe1f7f5d946e3d9ec59e21b9ed'
 
 
 let Topbar = (props) => {
-   // localStorage.setItem("Test", "answer");
-   // let thing = localStorage.getItem("Test");
-   // console.log(thing);
 
    async function search(event) {
       event.preventDefault()
@@ -31,33 +28,33 @@ let Topbar = (props) => {
       return `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
    }
 
-   function handleChange(event) {
+   function handleSearchChange(event) {
       event.preventDefault()
       props.dispatch({type: 'SET_SEARCH_QUERY', payload: event.target.value})
       console.log("handle search query thing")
    }
 
+   function removeAllMovies() {
+      props.dispatch({type: 'REMOVE_ALL_MOVIES'})
+   }
 
    return (
-      <div id="navbar_container">
-         <div>
+      <div id="topbar_container">
+         <div id="title">
             Movie Buddy Maybe!
          </div>
-         <div id="navbar_content">
-            <form id="search_container" onSubmit={ search }>
-               <button id="advanced_button"></button>
-               <input id="search_input" type="text" placeholder="Search" onChange={handleChange}  />
-               <button id="search_button" type="submit"></button>
-            </form>
+         <div id="topbar_center">
+            <div id="find_some_movies">Find your next flick.</div>
+            <div id="top_controls">
+               <form id="search_container" onSubmit={ search }>
+                  <input id="search_input" type="text" placeholder="Search" onChange={handleSearchChange}  />
+                  <button id="search_button" type="submit">Go</button>
+               </form>
+               <div id="remove_all" onClick={() => { removeAllMovies() }}>Remove All</div>
+            </div>
             <CollectedMovies />
-            {/* <div id="advanced_search">
-               <input name="actor"></input>
-               <input name="title"></input>
-               <input name="year"></input>
-               <input name="genre"></input>
-            </div> */}
          </div>
-         <div>
+         <div id="logo_container">
             <img 
                id="tmdb_logo"
                src={tmdbLogo}

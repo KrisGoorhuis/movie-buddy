@@ -44,6 +44,12 @@
    margin: 0px;
 }
 
+#user_rating {
+   background-color: rgba(0, 0, 0, .3);
+   padding: 10px;
+   margin: 0px;
+}
+
 #popularity {
    background-color: rgba(0, 0, 0, .3);
    padding: 10px;
