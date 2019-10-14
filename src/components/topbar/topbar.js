@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import tmdbLogo from 'assets/tmdb-logo.svg'
 
 const apiKey = '96c93cbe1f7f5d946e3d9ec59e21b9ed'
+// const apiKey = process.env.apiKey
 
 
 let Topbar = (props) => {
@@ -40,7 +41,7 @@ let Topbar = (props) => {
 
    return (
       <div id="topbar_container">
-         <div id="title">
+         <div id="topbar_title">
             Movie Buddy Maybe!
          </div>
          <div id="topbar_center">
@@ -51,6 +52,7 @@ let Topbar = (props) => {
                   <button id="search_button" type="submit">Go</button>
                </form>
                <div id="remove_all" onClick={() => { removeAllMovies() }}>Remove All</div>
+               <div id="show_collected_movies">+</div>
             </div>
             <CollectedMovies />
          </div>

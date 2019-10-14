@@ -9,6 +9,7 @@
    display: flex;
    border-radius: 5px;
    padding: 5px;
+   box-shadow: 0px 2px 18px 1px;
 }
 
 #collected_movies_controls {

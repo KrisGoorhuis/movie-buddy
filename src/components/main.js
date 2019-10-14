@@ -8,10 +8,9 @@ import Movies from 'components/movies/movies.js'
 
 
 let Main = (props) => {
-
-   // For the record: I know this shouldn't be in a public git repo. 
-   // You gotta know when being lazy is harmless. :D
-   const apiKey = '96c93cbe1f7f5d946e3d9ec59e21b9ed'
+   // Provided by my Heroku configurations
+   let apiKey = process.env.apiKey ? process.env.apiKey : '96c93cbe1f7f5d946e3d9ec59e21b9ed'
+   
 
    // Image urls in movie objects are only the tail end. Gotta get the base.
    async function getConfiguration() {

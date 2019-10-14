@@ -13,6 +13,7 @@ const initialState = {
    displayingSuggestions: false,
    suggestionGenres: [],
    splashMessage: "",
+   showCollectedMoviesMobile: false,
 }
 
 // localStorage.setItem("Test", "answer");

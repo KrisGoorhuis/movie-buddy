@@ -10,6 +10,12 @@ let CollectedMovies = (props) => {
       props.dispatch({type: 'REMOVE_MOVIE', payload: movie})
    }
 
+   function ellipsizeTitle(title) {
+      console.log("Ellipsizing")
+      console.log(title)
+      return title.slice(0, 25) + "..."
+   }
+
    async function getSuggestions() {
       let suggestionObject = null
       props.dispatch({type: 'CLEAR_SUGGESTION_GENRES'})
@@ -110,7 +116,7 @@ let CollectedMovies = (props) => {
                      props.collectedMovies.map( (movie, index) => {
                         return (
                            <div className="collected_movie_listing" key={index}>
-                              <div className="listing_title">{ movie.title ? movie.title : "-title data missing-" }</div>
+                              <div className="listing_title">{ movie.title ? ellipsizeTitle(movie.title) : "-title data missing-" }</div>
                               <div className="remove_button" onClick={ () => { removeMovieSelection(movie) } }>Remove</div>
                            </div>
                         )
