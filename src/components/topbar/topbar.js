@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { useEffect } from 'react'; 
 import './topbar.css'; 
 import CollectedMovies from './collected-movies/collected-movies.js'
 import { connect } from 'react-redux'
@@ -10,6 +10,14 @@ const apiKey = '96c93cbe1f7f5d946e3d9ec59e21b9ed'
 
 
 let Topbar = (props) => {
+
+   useEffect( () => {
+      // Functionally the same as media width break for page load,
+      // but this lets us more easily work the toggle.
+      // if (window.screen.width <= 700) {
+      //    props.dispatch({type: 'TOGGLE_SHOW_COLLECTED_MOVIES'})
+      // }
+   }, [])
 
    async function search(event) {
       event.preventDefault()
@@ -39,6 +47,10 @@ let Topbar = (props) => {
       props.dispatch({type: 'REMOVE_ALL_MOVIES'})
    }
 
+   function toggleCollectedMovies() {
+      props.dispatch({type: 'TOGGLE_SHOW_COLLECTED_MOVIES'})
+   } 
+
    return (
       <div id="topbar_container">
          <div id="topbar_title">
@@ -51,15 +63,17 @@ let Topbar = (props) => {
                   <input id="search_input" type="text" placeholder="Search" onChange={handleSearchChange}  />
                   <button id="search_button" type="submit">Go</button>
                </form>
-               <div id="remove_all" onClick={() => { removeAllMovies() }}>Remove All</div>
-               <div id="show_collected_movies">+</div>
+               <div 
+                  id="remove_all" 
+                  onClick={() => { removeAllMovies() }}
+               >
+                  Remove All ({ props.collectedMovies.length })
+               </div>
+               <div id="show_collected_movies" onClick={toggleCollectedMovies}>
+                  { props.showCollectedMovies ? "-" : "+" }
+               </div>
             </div>
-
-            {/* {
-               props.showCollectedMovies ? <CollectedMovies /> : <React.Fragment />
-
-            } */}
-            <CollectedMovies />
+            { props.showCollectedMovies ? <CollectedMovies /> : <React.Fragment /> }
          </div>
          <div id="logo_container">
             <img 
@@ -75,7 +89,8 @@ let Topbar = (props) => {
 let mapStateToProps = (state) => {
    return {
       searchQuery: state.searchQuery,
-      // showCollectedMovies: state.showCollectedMovies
+      showCollectedMovies: state.showCollectedMovies,
+      collectedMovies: state.collectedMovies
    }
 }
 

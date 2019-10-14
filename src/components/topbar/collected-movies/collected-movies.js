@@ -5,10 +5,6 @@ import getSuggestableMovies from 'api/api_main.js'
 
 
 let CollectedMovies = (props) => {
-   // if (window.screen.width <= 700) {
-   //    props.dispatch({type: 'TOGGLE_SHOW_COLLECTED_MOVIES'})
-   //    console.log("700")
-   // }
 
    function removeMovieSelection(movie) {
       props.dispatch({type: 'REMOVE_MOVIE', payload: movie})
@@ -133,7 +129,6 @@ let CollectedMovies = (props) => {
                      <div id="add_movies_below">Add some movies below</div>
                   }
                </div>
-
             </div>
          }
          
