@@ -1,7 +1,6 @@
 #collected_movies_container {
    height: 100px;
    min-width: 300px;
-   border: 1px solid yellow;
    background: var(--white);
    color: black;
    z-index: 2;
