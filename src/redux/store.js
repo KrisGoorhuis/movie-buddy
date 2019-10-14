@@ -13,7 +13,7 @@ const initialState = {
    displayingSuggestions: false,
    suggestionGenres: [],
    splashMessage: "",
-   showCollectedMoviesMobile: false,
+   showCollectedMovies: true,
 }
 
 // localStorage.setItem("Test", "answer");
@@ -124,6 +124,12 @@ const reducer = (state = initialState, action) => {
          return {
             ...state,
             splashMessage: action.payload
+         }
+      case('TOGGLE_SHOW_COLLECTED_MOVIES'):
+      console.log("setting to" + !state.showCollectedMovies)
+         return {
+            ...state,
+            showCollectedMovies: !state.showCollectedMovies
          }
 
       default:

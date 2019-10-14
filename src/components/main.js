@@ -17,6 +17,7 @@ let Main = (props) => {
       await fetch(`https://api.themoviedb.org/3/configuration?api_key=${apiKey}`)
          .then( response => response.json())
          .then( data => {
+            console.log(data.images)
             props.dispatch({type: 'SET_BASE_IMAGE_URL', payload: data.images.base_url})
          })
    }

@@ -54,6 +54,11 @@ let Topbar = (props) => {
                <div id="remove_all" onClick={() => { removeAllMovies() }}>Remove All</div>
                <div id="show_collected_movies">+</div>
             </div>
+
+            {/* {
+               props.showCollectedMovies ? <CollectedMovies /> : <React.Fragment />
+
+            } */}
             <CollectedMovies />
          </div>
          <div id="logo_container">
@@ -69,7 +74,8 @@ let Topbar = (props) => {
 
 let mapStateToProps = (state) => {
    return {
-      searchQuery: state.searchQuery
+      searchQuery: state.searchQuery,
+      // showCollectedMovies: state.showCollectedMovies
    }
 }
 

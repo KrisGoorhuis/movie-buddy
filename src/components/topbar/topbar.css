@@ -108,7 +108,7 @@
    }
 
    #remove_all {
-      display: none;
+      /* display: none; */
    }
 
    #show_collected_movies {
@@ -119,7 +119,7 @@
       position: absolute;
       width: 50px;
       top: 0;
-      right: 4px;
+      right: 0px;
    }
 
    #tmdb_logo {

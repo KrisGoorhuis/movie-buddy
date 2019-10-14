@@ -26,6 +26,9 @@
    width: 350px;
    padding: 5px;
    position: relative;
+}
+
+#add_movies_below {
    color: rgba(0, 0, 0, .3)
 }
 
@@ -62,4 +65,14 @@
 #results_count {
    width: 25px;
    margin-left: 5px;
+}
+
+
+@media screen and (max-width: 700px) {
+   #collected_movies_controls {
+      display: none;
+   }
+   #collected_movies_container {
+      height: 80px;
+   }
 }

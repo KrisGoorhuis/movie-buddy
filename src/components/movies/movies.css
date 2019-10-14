@@ -29,10 +29,6 @@
    #movies_container {
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 10px;
-   }
-   
-   .movie_poster {
-      height: 100%;
-      width: auto;
+      padding: 10px;
    }
 }

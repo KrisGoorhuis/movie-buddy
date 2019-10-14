@@ -5,15 +5,23 @@ import getSuggestableMovies from 'api/api_main.js'
 
 
 let CollectedMovies = (props) => {
+   // if (window.screen.width <= 700) {
+   //    props.dispatch({type: 'TOGGLE_SHOW_COLLECTED_MOVIES'})
+   //    console.log("700")
+   // }
 
    function removeMovieSelection(movie) {
       props.dispatch({type: 'REMOVE_MOVIE', payload: movie})
    }
 
    function ellipsizeTitle(title) {
-      console.log("Ellipsizing")
-      console.log(title)
-      return title.slice(0, 25) + "..."
+      const len = 25
+
+      if (title.length >= len) {
+         return title.slice(0, len) + "..."
+      }
+      
+      else return title;
    }
 
    async function getSuggestions() {
@@ -122,7 +130,7 @@ let CollectedMovies = (props) => {
                         )
                      })
                      :
-                     <div>Add some movies below</div>
+                     <div id="add_movies_below">Add some movies below</div>
                   }
                </div>
 
