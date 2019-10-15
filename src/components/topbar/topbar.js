@@ -73,7 +73,8 @@ let Topbar = (props) => {
                   { props.showCollectedMovies ? "-" : "+" }
                </div>
             </div>
-            { props.showCollectedMovies ? <CollectedMovies /> : <React.Fragment /> }
+            {/* { props.showCollectedMovies ? <CollectedMovies /> : <React.Fragment /> } */}
+            <CollectedMovies />
          </div>
          <div id="logo_container">
             <img 

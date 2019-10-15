@@ -37,10 +37,10 @@ let Splash = (props) => {
                }
             </div>
             :
-            <div>
+            <div id="splash_instructions_container">
                <ul id="splash_instructions">
-                  <li> 1) Add some favorites to the list </li>
-                  <li> 2) Hit the Get Suggestions button </li>
+                  <li> 1) Add some favorites </li>
+                  <li> 2) Hit Get Suggestions </li>
                   <li> 3) Enjoy your next flick! </li>
                </ul>
             </div>

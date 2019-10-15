@@ -1,7 +1,43 @@
 #splash_container {
-      margin-top: 150px;
+      margin-top: 160px;
 }  
+
+#splash_instructions_container {
+      /* background: var(--orange); */
+      /* background: linear-gradient(
+            90deg, 
+            var(--darkpurple) -10%,
+             var(--orange) 30%, 
+             var(--orange) 70%, 
+             var(--darkpurple) 110%
+      ) */
+            /* linear-gradient(red 10%, 30%, blue 90%); */
+      /* box-shadow: inset 0px 0px 5px 0px var(--darkpurple); */
+      color: var(--orange)
+}
 
 #splash_instructions {
       list-style-type: none;
+      width: 500px;
+      margin: auto;
+      /* background: var(--graybrown) */
+      margin-top: 30px;
+      margin-bottom: 20px;
+      font-size: 30px;
+      /* display: flex;
+      flex-direction: column;
+      justify-content: center; */
+      padding: 10px;
+}
+
+#splash_instructions li {
+      /* display: inline-block; */
+}
+
+@media screen and (max-width: 700px) {
+      #splash_instructions {
+            font-size: 20px;
+            width: 50%;
+            margin-bottom: 10px;
+      }
 }

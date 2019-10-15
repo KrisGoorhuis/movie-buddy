@@ -64,8 +64,8 @@ let CollectedMovies = (props) => {
          <div id="mobile_get_suggestions" onClick={getSuggestions}>Get suggestions!</div>
 
          {
+            props.showCollectedMovies &&
             <div id="collected_movies_container">  
-
                <div id="collected_movies_controls">
                   {/* Input "value" properties here must match movie object keys */}
                   <form id="collected_movies_form">
@@ -147,6 +147,7 @@ let mapStateToProps = (state) => {
       collectedMovies: state.collectedMovies,
       resultQuantity: state.resultQuantity,
       searchBy: state.searchBy,
+      showCollectedMovies: state.showCollectedMovies
    }
 }
 
