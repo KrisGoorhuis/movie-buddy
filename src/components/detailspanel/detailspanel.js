@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import './detailspanel.css'
 import { connect } from 'react-redux'
 
+import add from 'assets/add.svg'
+import close from 'assets/close.svg'
+
 
 // This component is a child of movies.js
 let DetailsPanel = (props) => {
@@ -59,25 +62,18 @@ let DetailsPanel = (props) => {
                 />
                
                 <div id="details_panel_container">
-                    <div id="details_container_top">
-
-
-                    </div>
-
                     <div id="details_container">
                         <h5 className="details_property" id="details_title">{props.selectedMovie.title}</h5>
                         <div id="details_subcontainer">
-                            <h5 className="details_property" id="details_date">{formatDate(props.selectedMovie.release_date)}</h5>
-                            <h5 className="details_property" id="details_user_rating">User rating: {props.selectedMovie.vote_average}</h5>
-                            <h5 className="details_property" id="details_popularity">Popularity: {props.selectedMovie.popularity}</h5>
+                            <p className="details_property" id="details_date">{formatDate(props.selectedMovie.release_date)}</p>
+                            <p className="details_property" id="details_user_rating">User rating: {props.selectedMovie.vote_average}</p>
+                            <p className="details_property" id="details_popularity">Popularity: {props.selectedMovie.popularity}</p>
                             <p className="details_property" id="details_overview">{props.selectedMovie.overview}</p>
                         </div>
                     </div>       
                     <div id="details_controls">
-                        <div 
-                            onClick={() => deselectMovie() }>Close</div>
-                        <br></br>
-                        <div onClick={() => addMovie() }>Add to list</div>
+                        <img src={add} onClick={() => addMovie() } />
+                        <img src={close} onClick={() => deselectMovie() } />
                     </div>
                </div>
             </div>
