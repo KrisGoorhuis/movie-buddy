@@ -1,3 +1,7 @@
 #splash_container {
       margin-top: 150px;
 }  
+
+#splash_instructions {
+      list-style-type: none;
+}

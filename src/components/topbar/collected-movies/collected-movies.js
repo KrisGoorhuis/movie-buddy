@@ -32,7 +32,7 @@ let CollectedMovies = (props) => {
       suggestionObject = await getSuggestableMovies(props.collectedMovies, props.searchBy, props.resultQuantity)
       
 
-      if (suggestionObject.suggestions === null) {
+      if (suggestionObject === null) {
          alert("Selected movies are too few or too dissimilar to find suggestions!")
       }
       else {
@@ -61,6 +61,8 @@ let CollectedMovies = (props) => {
 
    return (
       <React.Fragment>
+         <div id="mobile_get_suggestions" onClick={getSuggestions}>Get suggestions!</div>
+
          {
             <div id="collected_movies_container">  
 
@@ -115,6 +117,10 @@ let CollectedMovies = (props) => {
                </div>
 
                <div id="collected_movies_list">
+                  {/* <div id="mobile_list_head">
+                     <div>Title:</div>
+                     <div>Get suggestions!</div>
+                  </div> */}
                   {
                      props.collectedMovies[0] !== undefined ?
                      props.collectedMovies.map( (movie, index) => {

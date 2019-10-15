@@ -12,6 +12,17 @@
       inset 0px 0px 5px 0px;
 }
 
+#collected_movies_container::-webkit-scrollbar {
+   width: 1em;
+}
+/* #collected_movies_container::-webkit-scrollbar-track {
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+} */
+
+#mobile_get_suggestions {
+   position: fixed;
+}
+
 #collected_movies_controls {
    padding: 5px;
    width: 200px;
@@ -26,6 +37,11 @@
    width: 350px;
    padding: 5px;
    position: relative;
+}
+
+#mobile_list_head {
+   display: flex;
+   justify-content: space-between;
 }
 
 #add_movies_below {
@@ -75,5 +91,21 @@
    }
    #collected_movies_container {
       height: 80px;
+      margin-top: 3px;
+   }
+   #mobile_get_suggestions {
+      display: flex;
+      bottom: 15px;
+      right: 15px;
+      border: 3px solid var(--orange);
+      border-radius: 999px;
+      background: var(--redpink);
+      padding: 8px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1),
+         inset 3px 3px 5px 0px rgba(255, 255, 255, 0.2);
+   }
+   #mobile_get_suggestions:active {
+      box-shadow: inset 3px 3px 5px 1px rgba(0, 0, 0, .3);
+
    }
 }
