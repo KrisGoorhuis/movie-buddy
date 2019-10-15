@@ -14,7 +14,7 @@
    /* box-shadow: -1px 1px 4px 1px var(--graybrown); */
 }
 
-.movie_controls {
+.movie_peek_container {
    position: absolute;
    width: 100%;
    height: 100%;
@@ -25,48 +25,65 @@
    flex-direction: column;
    justify-content: space-around;
    align-items: center;
-   
    opacity: 0;
+   /* display: none; */
    background-color: rgba(0, 0, 0, 0);
    transform: scale(.8);
    transition: .3s;
    border-radius: 50px;
-
 }
 
-.movie_control button {
-   -webkit-appearance: button;
-    -webkit-writing-mode: horizontal-tb !important;
-    text-rendering: auto;
-    color: white;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: center;
-    align-items: flex-start;
-    cursor: default;
-    background-color: buttonface;
-    box-sizing: border-box;
-    margin: 0em;
-    font: 400 13.3333px Arial;
-    padding: 1px 6px;
-    border-width: 0px;
-    border-style: outset;
-    border-color: buttonface;
-    border-image: initial;
-}
-
-.movie_controls:hover {
+.movie_peek_container:hover {
    opacity: 1;
    border-radius: 0px;
-   background-color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(0, 0, 0, 0.7);
    transform: scale(1);
    transition: .3s;
+}
+
+.movie_peek_container h3 {
+   margin: 0px;
+   text-align: center;
+   color: var(--graybrown);
+}
+
+
+.movie_peek_button {
+   font-size: 40px;
+   font-weight: bold;
+   border: 3px solid var(--graybrown);
+   color: var(--graybrown);
+   border-radius: 999px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 30px;
+   height: 30px;
+   padding: 5px;
+}
+
+.movie_peek_button:hover {
    cursor: pointer;
 }
+
+.movie_peek_controls {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   height: 60%;
+   width: 100%;
+   margin-bottom: 10px;
+}
+
+/* .movie_peek_add {
+
+} */
+
+.movie_peek_add img {
+   color: var(--graybrown);
+}
+
 
 @media  screen and (max-width: 700px) {
 

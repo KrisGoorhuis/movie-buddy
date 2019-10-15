@@ -59,12 +59,19 @@ let DetailsPanel = (props) => {
                 />
                
                 <div id="details_panel_container">
+                    <div id="details_container_top">
+
+
+                    </div>
+
                     <div id="details_container">
-                        <h3 className="details_property" id="details_title">{props.selectedMovie.title}</h3>
-                        <h6 className="details_property" id="details_date">{formatDate(props.selectedMovie.release_date)}</h6>
-                        <h6 className="details_property" id="details_user_rating">User rating: {props.selectedMovie.vote_average}</h6>
-                        <p className="details_property" id="details_popularity">Popularity: {props.selectedMovie.popularity}</p>
-                        <p className="details_property" id="details_overview">{props.selectedMovie.overview}</p>
+                        <h5 className="details_property" id="details_title">{props.selectedMovie.title}</h5>
+                        <div id="details_subcontainer">
+                            <h5 className="details_property" id="details_date">{formatDate(props.selectedMovie.release_date)}</h5>
+                            <h5 className="details_property" id="details_user_rating">User rating: {props.selectedMovie.vote_average}</h5>
+                            <h5 className="details_property" id="details_popularity">Popularity: {props.selectedMovie.popularity}</h5>
+                            <p className="details_property" id="details_overview">{props.selectedMovie.overview}</p>
+                        </div>
                     </div>       
                     <div id="details_controls">
                         <div 

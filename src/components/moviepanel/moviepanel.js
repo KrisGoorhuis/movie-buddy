@@ -3,6 +3,8 @@ import './moviepanel.css'
 import { connect } from 'react-redux'
 
 import noImage from 'assets/missing.jpg'
+import add from 'assets/add.svg'
+import view from 'assets/view.svg'
 
 
 
@@ -45,15 +47,16 @@ let MoviePanel = (props) => {
             src={getImageURL(props.movie.poster_path)}
             alt="movie poster" 
          />
-         <div className="movie_controls">
-            {/* <h3>{props.movie.title}</h3> */}
-
-            <button 
-               onClick={ () => {setSelectedMovie(props.movie)}}
-            >
-               Expand
-            </button>
-            <button onClick={() => addMovie() }>Add to selection</button>
+         <div className="movie_peek_container">
+            <h3>{props.movie.title}</h3>
+            <div className="movie_peek_controls">
+               <div className="movie_peek_button" onClick={ () => { setSelectedMovie(props.movie) }}> 
+                  <img src={view} alt="view details" />
+               </div>
+               <div className="movie_peek_add movie_peek_button" onClick={() => addMovie() }>
+                  <img src={add} alt="add movie" />
+               </div>
+            </div>
          </div>
       </div>
    )

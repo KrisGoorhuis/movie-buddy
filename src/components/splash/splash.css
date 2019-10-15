@@ -1,6 +1,10 @@
 #splash_container {
-      margin-top: 160px;
+      margin-top: 200px;
 }  
+
+#suggestion_information {
+      color: var(--orange);
+}
 
 #splash_instructions_container {
       /* background: var(--orange); */
@@ -20,24 +24,25 @@
       list-style-type: none;
       width: 500px;
       margin: auto;
-      /* background: var(--graybrown) */
-      margin-top: 30px;
-      margin-bottom: 20px;
+      margin-bottom: 50px;
       font-size: 30px;
-      /* display: flex;
-      flex-direction: column;
-      justify-content: center; */
       padding: 10px;
 }
 
-#splash_instructions li {
-      /* display: inline-block; */
-}
+/* #splash_instructions li {
+
+} */
 
 @media screen and (max-width: 700px) {
+      #splash_container {
+            margin-top: 160px;
+      }
       #splash_instructions {
             font-size: 20px;
             width: 50%;
-            margin-bottom: 10px;
+            margin-bottom: -10px;
+      }
+      #suggestion_information {
+            display: none;
       }
 }

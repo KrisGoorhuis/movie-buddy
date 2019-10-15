@@ -31,7 +31,7 @@ let Splash = (props) => {
       <div id={"splash_container"}>
          {
             props.displayingSuggestions ? 
-            <div>
+            <div id="suggestion_information">
                {
                   props.splashMessage
                }
