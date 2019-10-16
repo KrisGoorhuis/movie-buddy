@@ -13,7 +13,7 @@ let CollectedMovies = (props) => {
    function ellipsizeTitle(title) {
       const len = 25
 
-      if (title.length >= len) {
+      if (title.length > len) {
          return title.slice(0, len) + "..."
       }
       
