@@ -63,18 +63,19 @@ let DetailsPanel = (props) => {
                
                 <div id="details_panel_container">
                     <div id="details_container">
-                        <h5 className="details_property" id="details_title">{props.selectedMovie.title}</h5>
                         <div id="details_subcontainer">
+                            <h5 className="details_property" id="details_title">{props.selectedMovie.title}</h5>
+                            <div id="details_controls">
+                                <img src={add} onClick={() => addMovie() } />
+                                <img src={close} onClick={() => deselectMovie() } />
+                            </div>
                             <p className="details_property" id="details_date">{formatDate(props.selectedMovie.release_date)}</p>
                             <p className="details_property" id="details_user_rating">User rating: {props.selectedMovie.vote_average}</p>
                             <p className="details_property" id="details_popularity">Popularity: {props.selectedMovie.popularity}</p>
                             <p className="details_property" id="details_overview">{props.selectedMovie.overview}</p>
                         </div>
                     </div>       
-                    <div id="details_controls">
-                        <img src={add} onClick={() => addMovie() } />
-                        <img src={close} onClick={() => deselectMovie() } />
-                    </div>
+                    
                </div>
             </div>
         )
